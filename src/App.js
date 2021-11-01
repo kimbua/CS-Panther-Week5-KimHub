@@ -1,19 +1,24 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, Switch } from "react-router";
+import { BrowserRouter as Router,Route, Switch } from "react-router-dom";
 import Homepage from "./pages/HomePage";
-import "./App.css";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import Detail from './pages/Movie/Detail'
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
+      <Router>
       <NavBar />
       <Switch>
         <Route exact path="/" component={Homepage} />
-        <Route exact path="/" component={Homepage} />
+        <Route path='/movie/:id'>
+            <Detail />
+          </Route>
       </Switch>
       <Footer />
+      </Router>
     </div>
   );
 }
