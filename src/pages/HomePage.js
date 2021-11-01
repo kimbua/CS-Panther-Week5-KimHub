@@ -5,13 +5,14 @@ const HomePage = () => {
   const API_KEY = process.env.REACT_APP_API_KEY;
   const imgLink = "https://image.tmdb.org/t/p/w500";
   const baseUrl = "https://api.themoviedb.org/3";
-  console.log(baseUrl);
-  console.log(imgLink);
-  console.log(API_KEY);
+
   const [trending, setTrending] = useState([]);
   const [nowPlaying, setNowPlaying] = useState([]);
   const [popular, setPopular] = useState([]);
   const [topRated, setTopRated] = useState([]);
+  const [movieClicked, setMovieClicked] = useState([]);
+
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -28,6 +29,7 @@ const HomePage = () => {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -44,6 +46,7 @@ const HomePage = () => {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -58,6 +61,7 @@ const HomePage = () => {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -80,24 +84,28 @@ const HomePage = () => {
         imgLink={imgLink}
         title="Trending Now"
         seeMore="/trending"
+        setMovieClicked={setMovieClicked}
       />
       <MoviesCarousel
         movies={nowPlaying}
         imgLink={imgLink}
         title="Now Playing"
         seeMore="/now_playing"
+        setMovieClicked={setMovieClicked}
       />
       <MoviesCarousel
         movies={popular}
         imgLink={imgLink}
         title="Popular on KimHub"
         seeMore="popular"
+        setMovieClicked={setMovieClicked}
       />
       <MoviesCarousel
         movies={topRated}
         imgLink={imgLink}
         title="Top rated on KimHub"
         seeMore="/top_rated"
+        setMovieClicked={setMovieClicked}
       />
     </div>
   );
